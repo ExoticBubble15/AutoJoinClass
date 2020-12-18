@@ -1,0 +1,45 @@
+from pynput.keyboard import Key, Controller #virtual keyboard
+from datetime import datetime #current time
+import time #pausing
+import keyboard #termination
+
+def pressKey(key):
+	vKeyboard.press(key)
+	vKeyboard.release(key)
+
+vKeyboard = Controller()
+shortcut_name = "epicholy"
+terminateKey = "pause" #pause/break
+#parallel arrays for meetings
+class_days = []
+class_times = [] #hour:minute:second; 24 hour clock
+class_links = []
+
+print("start: " + str(datetime.now())[11:19])
+while True:
+	for i in range(len(class_days)):
+		currentDay = datetime.today().strftime('%A') #day of week
+		clockTime = str(datetime.now())[11:19] #current time
+		if currentDay == class_days[i] and clockTime == class_times[i]: #if there is a meeting today and at current time
+			pressKey(Key.cmd)
+			time.sleep(1)
+			vKeyboard.type(shortcut_name)
+			time.sleep(1)
+			pressKey(Key.enter)
+			time.sleep(5)
+			vKeyboard.press(Key.cmd)
+			vKeyboard.press(Key.up)
+			vKeyboard.release(Key.cmd)
+			vKeyboard.release(Key.up)
+			vKeyboard.type(class_links[i])
+			vKeyboard.press(Key.enter)
+			for i in range(2,0,-1):
+				time.sleep(5)
+				for j in range(i):
+					pressKey(Key.tab)
+				pressKey(Key.enter)
+			print("action complete: " + str(clockTime))
+	if int(clockTime[3:5]) % 5 == int(clockTime[6:]) == 0:
+		print(clockTime)
+	if keyboard.is_pressed(terminateKey): #if termiateKey is pressed, end program
+		break 
