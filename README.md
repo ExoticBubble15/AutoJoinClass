@@ -3,6 +3,7 @@ Automatically joins classes/meetings on a user inputted schedule.
 
 
 Parallel Arrays Explained
+
 use class_days for the days classes/meetings are on
 use class_times for the times of each class/meeting (24 hr clock)
 use class_links for the links of each class/meeting
