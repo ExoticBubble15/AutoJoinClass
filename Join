@@ -8,7 +8,7 @@ def pressKey(key):
 	vKeyboard.release(key)
 
 vKeyboard = Controller()
-shortcut_name = "epicholy"
+shortcut_name = "chrome"
 terminateKey = "pause" #pause/break
 #parallel arrays for meetings
 class_days = []
